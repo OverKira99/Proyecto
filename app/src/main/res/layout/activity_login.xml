@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".LoginActivity">
+    tools:context=".auth.activities.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -67,8 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="INICIAR SESIÓN"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_blue_rounded"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/blue"
         android:layout_marginBottom="16dp"/>
 
     <!-- Divisor -->
@@ -99,8 +99,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Continuar con Google"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_red_rounded"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/blue"
         android:drawableStart="@drawable/ic_google"
         android:drawablePadding="8dp"/>
 
@@ -114,6 +114,7 @@
     </TextView>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrarse"

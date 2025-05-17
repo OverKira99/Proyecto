@@ -46,4 +46,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.google.firebase:firebase-auth:22.3.1")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.google.firebase:firebase-firestore:24.0.0")
 }

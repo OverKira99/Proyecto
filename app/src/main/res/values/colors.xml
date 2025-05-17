@@ -3,6 +3,7 @@
     <!-- Colores principales -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="blue">#41c0F2</color>
 
     <!-- Azules (para botones y textos) -->
     <color name="blue_500">#4285F4</color>  <!-- Color de Google/acción principal -->
