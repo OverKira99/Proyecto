@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Colores principales -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Azules (para botones y textos) -->
+    <color name="blue_500">#4285F4</color>  <!-- Color de Google/acción principal -->
+    <color name="blue_700">#3367D6</color>  <!-- Variante oscura para efectos -->
+
+    <!-- Rojos (botón Google) -->
+    <color name="red_500">#DB4437</color>   <!-- Rojo de Google -->
+
+    <!-- Grises (bordes, textos secundarios) -->
+    <color name="gray_300">#E0E0E0</color>  <!-- Bordes de inputs -->
+    <color name="gray_500">#9E9E9E</color>  <!-- Textos secundarios -->
+    <color name="gray_700">#616161</color>  <!-- Textos principales oscuros -->
+
+    <!-- Grises adicionales -->
+    <color name="gray_100">#F5F5F5</color>  <!-- Fondo claro -->
+    <color name="gray_900">#212121</color>  <!-- Textos muy oscuros -->
+
+    <!-- Colores de estado -->
+    <color name="green_500">#4CAF50</color>  <!-- Para éxitos -->
+    <color name="red_A700">#D50000</color>  <!-- Para errores -->
+
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "396694131194",
+    "project_id": "proyecto-f1568",
+    "storage_bucket": "proyecto-f1568.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396694131194:android:c23590583ed7bb06a75443",
+        "android_client_info": {
+          "package_name": "com.alejandrobel.proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmdewH2kDckCw2TpI78XNY3etxUMHsETM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
