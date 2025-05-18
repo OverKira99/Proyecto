@@ -23,8 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+       >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
@@ -40,8 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"

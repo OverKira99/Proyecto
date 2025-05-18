@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_flashcards"/>
+                android:src="@drawable/evaluation"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_lessons"/>
+                android:src="@drawable/lesson"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_profile"/>
+                android:src="@drawable/profile"/>
 
             <TextView
                 android:layout_width="wrap_content"

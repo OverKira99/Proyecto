@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // Registrar usuario
-        authRepository.registerUser(email, password, new AuthRepository.AuthCallback() {
+        authRepository.registerUser( name,email, password, new AuthRepository.AuthCallback() {
             @Override
             public void onSuccess() {
                 Toast.makeText(RegisterActivity.this, "¡Registro exitoso!", Toast.LENGTH_SHORT).show();

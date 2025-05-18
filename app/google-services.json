@@ -12,7 +12,20 @@
           "package_name": "com.alejandrobel.proyecto"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "396694131194-tvd4ndpfkalo5sm1jaihtu76qflt7esv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alejandrobel.proyecto",
+            "certificate_hash": "e01dcd2b2fd937ee3f1b46f00be86628b89dcc11"
+          }
+        },
+        {
+          "client_id": "396694131194-ktb85hiifsu9c3vn1cn0uj98bstbkjkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDmdewH2kDckCw2TpI78XNY3etxUMHsETM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396694131194-ktb85hiifsu9c3vn1cn0uj98bstbkjkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

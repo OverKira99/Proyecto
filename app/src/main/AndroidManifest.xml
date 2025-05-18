@@ -33,17 +33,19 @@
             android:exported="false" /> <!-- Pantalla de Carga (Launcher) -->
         <activity
             android:name=".auth.activities.LoadScreenActivity"
-            android:exported="true">
+            android:exported="false">
+
+        </activity> <!-- Login -->
+        <activity
+            android:name=".auth.activities.LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Login -->
-        <activity
-            android:name=".auth.activities.LoginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" /> <!-- Registro -->
+    </activity> <!-- Registro -->
         <activity
             android:name=".auth.activities.RegisterActivity"
             android:exported="false"

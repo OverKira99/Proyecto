@@ -25,4 +25,7 @@
     <color name="green_500">#4CAF50</color>  <!-- Para éxitos -->
     <color name="red_A700">#D50000</color>  <!-- Para errores -->
 
+
+    <color name="light_gray">#F5F5F5</color>
+
 </resources>

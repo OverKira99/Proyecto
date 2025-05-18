@@ -20,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_name"
@@ -36,9 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+        app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
@@ -54,8 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
@@ -71,8 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadius="8dp"
-        app:boxStrokeColor="@color/gray_300">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_confirm_password"
@@ -107,8 +102,4 @@
             android:textColor="@color/blue_500"
             android:clickable="true"
             android:onClick="navigateToLogin"/>
-
-
-
-
 </LinearLayout>
