@@ -2,54 +2,99 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.alejandrobel.proyecto">
-    <!-- Permisos (si no los tienes) -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:name=".MyApp"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.Proyecto"
         tools:targetApi="31">
+
+        <!-- Actividades del perfil -->
         <activity
             android:name=".profile.activities.EditProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".profile.activities.ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".profile.activities.ProfileActivity" />
+        </activity>
+
         <activity
             android:name=".profile.activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
+        </activity>
+
+        <!-- Actividades de lecciones -->
         <activity
             android:name=".lessons.activities.LessonDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".lessons.activities.LessonsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".lessons.activities.LessonsActivity" />
+        </activity>
+
         <activity
             android:name=".lessons.activities.LessonsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
+        </activity>
+
+        <!-- Actividades de flashcards -->
         <activity
             android:name=".flashcards.activities.FlashcardDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".flashcards.activities.FlashcardsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".flashcards.activities.FlashcardsActivity" />
+        </activity>
+
         <activity
             android:name=".flashcards.activities.FlashcardsActivity"
-            android:exported="false" /> <!-- Pantalla de Carga (Launcher) -->
+            android:exported="false"
+            android:parentActivityName=".main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
+        </activity>
+
+        <!-- Actividades de autenticación -->
         <activity
             android:name=".auth.activities.LoadScreenActivity"
-            android:exported="false">
-
-        </activity> <!-- Login -->
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".auth.activities.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"   >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustResize">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-    </activity> <!-- Registro -->
+        </activity>
+
         <activity
             android:name=".auth.activities.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" /> <!-- Pantalla Principal -->
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Actividad principal -->
         <activity
             android:name=".main.MainActivity"
             android:exported="false" />

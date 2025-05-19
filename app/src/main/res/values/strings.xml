@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Proyecto</string>
     <string name="default_web_client_id" translatable="false">TU_CLIENT_ID.apps.googleusercontent.com</string>
+    <string name="cargando">Cargando...\n</string>
+    <string name="prograquest_slogan">PrograQuest</string>
 </resources>
 

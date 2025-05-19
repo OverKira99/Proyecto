@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue_500"
+        android:background="@color/blue"
         app:title="Tarjetas de Estudio"
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_arrow_back"
@@ -19,11 +19,11 @@
 
     <!-- Lista de Flashcards -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_flashcards"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:padding="8dp"/>
 
     <!-- Botón Flotante para añadir -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

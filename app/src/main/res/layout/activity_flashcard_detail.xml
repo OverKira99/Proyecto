@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".flashcards.activities.FlashcardDetailActivity">
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_question_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_show_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mostrar Respuesta"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/blue"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/tv_answer_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Sección para código Java -->
+        <TextView
+            android:id="@+id/tv_java_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ejemplo Java:"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_java_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:background="@color/light_gray"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Sección para código Python -->
+        <TextView
+            android:id="@+id/tv_python_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ejemplo Python:"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_python_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:background="@color/light_gray"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Conclusión -->
+        <TextView
+            android:id="@+id/tv_conclusion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>

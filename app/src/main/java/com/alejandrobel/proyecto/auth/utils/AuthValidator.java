@@ -1,13 +1,25 @@
 package com.alejandrobel.proyecto.auth.utils;
 
+import android.text.TextUtils;
 import android.util.Patterns;
+
+import java.util.regex.Pattern;
 
 public class AuthValidator {
 
-    // Validar formato de email
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE
+    );
+
     public static boolean isValidEmail(String email) {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        if (TextUtils.isEmpty(email)) {
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email).matches();
     }
+    // Validar formato de email
+
 
     // Validar contraseña (mínimo 6 caracteres)
     public static boolean isValidPassword(String password) {
