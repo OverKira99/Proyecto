@@ -1,105 +1,84 @@
 package com.alejandrobel.proyecto.flashcards.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.alejandrobel.proyecto.R;
-import com.alejandrobel.proyecto.flashcards.adapters.FlashcardsAdapter;
+import com.alejandrobel.proyecto.flashcards.adapters.FlashcardAdapter;
 import com.alejandrobel.proyecto.flashcards.models.Flashcard;
-import com.alejandrobel.proyecto.utils.FirebaseDataInitializer;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class FlashcardsActivity extends AppCompatActivity {
+public class FlashcardsActivity extends AppCompatActivity implements FlashcardAdapter.OnAnswerSelectedListener {
 
-    private RecyclerView recyclerView;
-    private FlashcardsAdapter adapter;
-    private List<Flashcard> flashcards = new ArrayList<>();
-    private FirebaseFirestore db;
+    private RecyclerView rvFlashcards;
+    private Toolbar toolbar;
+    private ArrayList<Flashcard> flashcardsList = new ArrayList<>();
+    private FlashcardAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_cards);
 
-        // Configurar ActionBar con botón de retroceso
+        // Inicializar vistas
+        rvFlashcards = findViewById(R.id.rv_flashcards);
+        toolbar = findViewById(R.id.toolbar_flashcards);
+
+        // Configurar toolbar
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Mis Flashcards");
         }
 
-        // Inicializar Firebase
-        db = FirebaseFirestore.getInstance();
-
         // Configurar RecyclerView
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FlashcardsAdapter(flashcards, this);
-        recyclerView.setAdapter(adapter);
+        adapter = new FlashcardAdapter(flashcardsList, this);
+        rvFlashcards.setAdapter(adapter);
+        rvFlashcards.setLayoutManager(new LinearLayoutManager(this));
 
-        // Inicializar datos si es necesario
-        initializeDataIfNeeded();
+        // Cargar datos de ejemplo
+        loadSampleFlashcards();
+    }
+
+    private void loadSampleFlashcards() {
+        flashcardsList.add(new Flashcard(
+                "Java vs Python",
+                "Java es un lenguaje orientado a objetos con sintaxis estricta que requiere definición explícita de tipos de datos.",
+                "Java es recomendado para principiantes por su sintaxis flexible y mínima configuración.",
+                false,
+                null,  // userAnswer inicialmente null
+                "Media"
+        ));
+
+        flashcardsList.add(new Flashcard(
+                "Programación Funcional",
+                "La programación funcional se basa en el concepto de funciones matemáticas puras.",
+                "En programación funcional, las variables son inmutables por defecto.",
+                true,
+                null,  // userAnswer inicialmente null
+                "Difícil"
+        ));
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
+    public void onAnswerSelected(int position, boolean answer) {
+        flashcardsList.get(position).setUserAnswer(answer);
+
+        boolean isCorrect = flashcardsList.get(position).isCorrectAnswer();
+        if (answer == isCorrect) {
+            Toast.makeText(this, "¡Respuesta correcta!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
         }
-        return super.onOptionsItemSelected(item);
     }
 
-    private void initializeDataIfNeeded() {
-        new FirebaseDataInitializer(this).initializeFlashcardsIfNeeded()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        loadFlashcards();
-                    } else {
-                        Toast.makeText(this, "Error inicializando datos", Toast.LENGTH_SHORT).show();
-                        Log.e("FlashcardsActivity", "Error en inicialización", task.getException());
-                    }
-                });
-    }
-
-    private void loadFlashcards() {
-        db.collection("flashcards")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        List<Flashcard> tempList = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            try {
-                                Flashcard flashcard = document.toObject(Flashcard.class);
-                                flashcard.setId(document.getId());
-                                tempList.add(flashcard);
-                            } catch (Exception e) {
-                                Log.e("FlashcardsActivity", "Error parsing flashcard", e);
-                            }
-                        }
-                        adapter.updateData(tempList);
-
-                        if (tempList.isEmpty()) {
-                            Toast.makeText(this, "No hay flashcards disponibles", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("Firestore", "Error getting documents: ", task.getException());
-                        Toast.makeText(this, "Error al cargar flashcards", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

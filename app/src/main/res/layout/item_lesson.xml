@@ -1,24 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_lesson_item"
+    android:clickable="true"
+    android:focusable="true">
 
-    <TextView
-        android:id="@+id/tv_lesson_title"
+    <!-- VideoView con controles -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <VideoView
+            android:id="@+id/video_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_play_circle"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_duration"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:text="5:30"/>
+    </RelativeLayout>
+
+    <!-- Contenido textual -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tv_lesson_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp"/>
+        <TextView
+            android:id="@+id/tv_lesson_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Leccion 1: Java VS Python"/>
+
+        <TextView
+            android:id="@+id/tv_lesson_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            tools:text="Descripción: Contexto histórico  y filosófico de ambos lenguajes.
+                        Java:  Origen: Proyecto Oak (1991), enfocado en dispositivos embebidos, evolucionó para enterprise.
+              Filosofía:  (Write Once, Run Anywhere) (WORA), fuerte tipado para reducir errores.
+        Python:
+        Origen: Creado por Guido van Rossum (1991) como lenguaje accesible y legible.
+        Filosofía: Legibilidad cuenta ,dinamismo para prototipado rápido.
+        "/>
+    </LinearLayout>
 </LinearLayout>

@@ -56,6 +56,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore:24.9.1")
     implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
     implementation ("com.google.firebase:firebase-database:20.0.0")
+    implementation ("com.google.firebase:firebase-database:20.0.0")
     implementation ("com.airbnb.android:lottie:6.1.0")
     implementation ("com.google.android.gms:play-services-tasks:18.0.2")
 }

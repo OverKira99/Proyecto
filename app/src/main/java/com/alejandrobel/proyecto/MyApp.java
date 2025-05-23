@@ -6,21 +6,16 @@ import android.app.Application;
 import android.util.Log;
 
 import com.alejandrobel.proyecto.utils.FirebaseDataInitializer;
+import com.google.firebase.FirebaseApp;
 
 
 public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initializeFirestoreData();
+        FirebaseApp.initializeApp(this);
+
     }
 
-    private void initializeFirestoreData() {
-        FirebaseDataInitializer initializer = new FirebaseDataInitializer(this);
 
-        // Ejecutar en cadena: primero flashcards, luego lecciones
-        initializer.initializeFlashcardsIfNeeded()
-                .addOnSuccessListener(aVoid -> initializer.initializeLessonsIfNeeded())
-                .addOnFailureListener(e -> Log.e(TAG, "Error inicializando datos", e));
-    }
 }

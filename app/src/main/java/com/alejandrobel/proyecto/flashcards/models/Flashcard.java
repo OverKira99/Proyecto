@@ -1,110 +1,44 @@
 package com.alejandrobel.proyecto.flashcards.models;
 
 
+import android.widget.RadioGroup;
+
 import java.io.Serializable;
+import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
-import java.io.Serializable;
 
-public class Flashcard implements Serializable {
-    // Tus campos existentes...
-    // Asegúrate de tener un serialVersionUID para control de versiones
-    private static final long serialVersionUID = 1L;
-    private String id;
+public class Flashcard {
+    private String title;
+    private String description;
     private String question;
-    private String answer;
-    private String category;
+    private boolean correctAnswer;
+    private Boolean userAnswer;
     private String difficulty;
-    private String codeExampleJava;
-    private String codeExamplePython;
-    private String conclusion;
-    private Date createdAt;
-    private Date updatedAt;
-    private List<String> tags;
 
-    // Constructor vacío requerido por Firestore
-    public Flashcard() {}
 
-    public String getId() {
-        return id;
+    public Flashcard(String title, String description, String question,
+                     boolean correctAnswer, String difficulty) {
+        this(title, description, question, correctAnswer, null, difficulty);
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
+    public Flashcard(String title, String description, String question,
+                     boolean correctAnswer, Boolean userAnswer, String difficulty) {
+        this.title = title;
+        this.description = description;
         this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
+        this.correctAnswer = correctAnswer;
+        this.userAnswer = userAnswer;
         this.difficulty = difficulty;
     }
 
-    public String getCodeExampleJava() {
-        return codeExampleJava;
-    }
 
-    public void setCodeExampleJava(String codeExampleJava) {
-        this.codeExampleJava = codeExampleJava;
-    }
-
-    public String getCodeExamplePython() {
-        return codeExamplePython;
-    }
-
-    public void setCodeExamplePython(String codeExamplePython) {
-        this.codeExamplePython = codeExamplePython;
-    }
-
-    public String getConclusion() {
-        return conclusion;
-    }
-
-    public void setConclusion(String conclusion) {
-        this.conclusion = conclusion;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public List<String> getTags() { return tags; }
-    public void setTags(List<String> tags) { this.tags = tags; }
+    // Getters y setters
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public String getQuestion() { return question; }
+    public boolean isCorrectAnswer() { return correctAnswer; }
+    public Boolean getUserAnswer() { return userAnswer; }
+    public void setUserAnswer(Boolean userAnswer) { this.userAnswer = userAnswer; }
+    public String getDifficulty() { return difficulty; }
 }

@@ -35,5 +35,6 @@
 
     <color name="blue_dark">#1A237E</color>
     <color name="blue_light">#3949AB</color>
+    <color name="yellow">#ffff00</color>
 
 </resources>

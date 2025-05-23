@@ -35,14 +35,7 @@
         </activity>
 
         <!-- Actividades de lecciones -->
-        <activity
-            android:name=".lessons.activities.LessonDetailActivity"
-            android:exported="false"
-            android:parentActivityName=".lessons.activities.LessonsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".lessons.activities.LessonsActivity" />
-        </activity>
+
 
         <activity
             android:name=".lessons.activities.LessonsActivity"
@@ -54,14 +47,7 @@
         </activity>
 
         <!-- Actividades de flashcards -->
-        <activity
-            android:name=".flashcards.activities.FlashcardDetailActivity"
-            android:exported="false"
-            android:parentActivityName=".flashcards.activities.FlashcardsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".flashcards.activities.FlashcardsActivity" />
-        </activity>
+
 
         <activity
             android:name=".flashcards.activities.FlashcardsActivity"
