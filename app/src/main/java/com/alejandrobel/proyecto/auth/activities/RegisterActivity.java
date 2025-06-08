@@ -32,23 +32,17 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Inicialización de vistas
-        initViews();
-
-        // Configurar AuthRepository
-        authRepository = new AuthRepository();
-
-        // Configurar listeners
-        setupListeners();
-    }
-
-    private void initViews() {
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         etConfirmPassword = findViewById(R.id.et_confirm_password);
         btnRegister = findViewById(R.id.btn_register);
         progressBar = findViewById(R.id.progressBar);
+
+        // Configurar AuthRepository
+        authRepository = new AuthRepository();
+        // Configurar listeners
+        setupListeners();
     }
 
     private void setupListeners() {

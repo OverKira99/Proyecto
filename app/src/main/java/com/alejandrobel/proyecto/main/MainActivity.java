@@ -28,6 +28,21 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         tvWelcome = findViewById(R.id.tv_welcome);
 
+        findViewById(R.id.card_study_cards).setOnClickListener(v -> {
+            Intent intent = new Intent(this, FlashcardsActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.card_lessons).setOnClickListener(v -> {
+            Intent intent = new Intent(this, LessonsActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.card_profile).setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
         loadUserData();
     }
 
@@ -48,22 +63,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Navegación
-    public void navigateToFlashcards(View view) {
-        startActivity(new Intent(this, FlashcardsActivity.class));
-    }
 
-    public void navigateToLessons(View view) {
-        startActivity(new Intent(this, LessonsActivity.class));
-    }
-
-    public void navigateToProfile(View view) {
-        startActivity(new Intent(this, ProfileActivity.class));
-    }
-
-    public void logout(View view) {
-        mAuth.signOut();
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
 }

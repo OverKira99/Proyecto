@@ -7,38 +7,45 @@ import java.io.Serializable;
 import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
-
 public class Flashcard {
-    private String title;
-    private String description;
-    private String question;
-    private boolean correctAnswer;
-    private Boolean userAnswer;
-    private String difficulty;
+    private String id;
+    private String pregunta;
+    private String descripcion;
+    private String titulo;
+    private boolean isTrue;
+    private String feedback;
+    private String dificultad;
+    private boolean isMastered;
 
+    public Flashcard() {}
 
-    public Flashcard(String title, String description, String question,
-                     boolean correctAnswer, String difficulty) {
-        this(title, description, question, correctAnswer, null, difficulty);
+    public Flashcard(String id, String pregunta, String descripcion, String titulo,
+                     boolean isTrue, String feedback, String dificultad, boolean isMastered) {
+        this.id = id;
+        this.pregunta = pregunta;
+        this.descripcion = descripcion;
+        this.titulo = titulo;
+        this.isTrue = isTrue;
+        this.feedback = feedback;
+        this.dificultad = dificultad;
+        this.isMastered = isMastered;
     }
 
-    public Flashcard(String title, String description, String question,
-                     boolean correctAnswer, Boolean userAnswer, String difficulty) {
-        this.title = title;
-        this.description = description;
-        this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.userAnswer = userAnswer;
-        this.difficulty = difficulty;
-    }
+    public String getId() { return id; }
+    public String getPregunta() { return pregunta; }
+    public String getDescripcion() { return descripcion; }
+    public String getTitulo() { return titulo; }
+    public boolean getIsTrue() { return isTrue; }
+    public String getFeedback() { return feedback; }
+    public String getDificultad() { return dificultad; }
+    public boolean isMastered() { return isMastered; }
 
-
-    // Getters y setters
-    public String getTitle() { return title; }
-    public String getDescription() { return description; }
-    public String getQuestion() { return question; }
-    public boolean isCorrectAnswer() { return correctAnswer; }
-    public Boolean getUserAnswer() { return userAnswer; }
-    public void setUserAnswer(Boolean userAnswer) { this.userAnswer = userAnswer; }
-    public String getDifficulty() { return difficulty; }
+    public void setId(String id) { this.id = id; }
+    public void setPregunta(String pregunta) { this.pregunta = pregunta; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setIsTrue(boolean isTrue) { this.isTrue = isTrue; }
+    public void setFeedback(String feedback) { this.feedback = feedback; }
+    public void setDificultad(String dificultad) { this.dificultad = dificultad; }
+    public void setMastered(boolean mastered) { this.isMastered = mastered; }
 }

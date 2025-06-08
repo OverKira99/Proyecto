@@ -6,7 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.alejandrobel.proyecto.R;
 import com.alejandrobel.proyecto.auth.repositories.AuthRepository;
 import com.alejandrobel.proyecto.auth.utils.AuthValidator;
@@ -33,19 +35,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
         authRepository = new AuthRepository();
 
-        // Configure Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Bind views
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
@@ -53,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPassword = findViewById(R.id.tv_forgot_password);
         tvRegister = findViewById(R.id.tv_register);
 
-        // Set click listeners
         btnLogin.setOnClickListener(v -> handleEmailLogin());
         btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
         tvForgotPassword.setOnClickListener(v -> showForgotPasswordDialog());

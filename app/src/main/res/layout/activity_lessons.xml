@@ -9,10 +9,9 @@
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_lessons"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
         app:title="Lecciones"
         app:titleTextColor="@color/black"
         app:navigationIcon="@drawable/ic_arrow_back"

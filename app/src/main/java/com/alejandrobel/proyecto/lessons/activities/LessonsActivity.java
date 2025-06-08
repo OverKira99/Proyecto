@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,30 +24,32 @@ public class LessonsActivity extends AppCompatActivity implements LessonAdapter.
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private LessonAdapter adapter;
+    private Toolbar toolbar;
     private List<Lesson> lessons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+        toolbar = findViewById(R.id.toolbar_lessons);
 
-        // Configurar flecha de retroceso
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // Inicializar vistas
+
         progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_lessons);
 
-        // Configurar RecyclerView
+
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setHasFixedSize(true);
 
         adapter = new LessonAdapter(lessons, this);
         recyclerView.setAdapter(adapter);
 
-        // Cargar datos de ejemplo
+
         loadSampleLessons();
     }
 
@@ -62,8 +65,8 @@ public class LessonsActivity extends AppCompatActivity implements LessonAdapter.
                     "1",
                     "Fundamentos Conceptuales",
                     "Contexto histórico y filosófico de ambos lenguajes.",
-                    "https://youtu.be/FF9vlX-ia7I",
-                    300, // 5 minutos
+                    "https://www.youtube.com/watch?v=FF9vlX-ia7I",
+                    200, //
                     new Date()
             ));
 
@@ -71,8 +74,32 @@ public class LessonsActivity extends AppCompatActivity implements LessonAdapter.
                     "2",
                     "Sintaxis Comparada",
                     "Análisis lado a lado de estructuras básicas.",
+                    "https://www.youtube.com/watch?v=a0seWcyS624",
+                    552,
+                    new Date()
+            ));
+            lessons.add(new Lesson(
+                    "3",
+                    "Paradigmas de Programación",
+                    "Implementación de POO y funcional.",
                     "https://ejemplo.com/video2.mp4",
-                    450, // 7.5 minutos
+                    250,
+                    new Date()
+            ));
+            lessons.add(new Lesson(
+                    "4",
+                    "Rendimiento y Ecosistema",
+                    "Benchmarking y herramientas clave.",
+                    "https://ejemplo.com/video2.mp4",
+                    220,
+                    new Date()
+            ));
+            lessons.add(new Lesson(
+                    "5",
+                    "Toma de Decisiones",
+                    "¿Cuál elegir según el proyecto?",
+                    "https://ejemplo.com/video2.mp4",
+                    200,
                     new Date()
             ));
 
