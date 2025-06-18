@@ -82,28 +82,10 @@ public class LessonsActivity extends AppCompatActivity implements LessonAdapter.
                     "3",
                     "Paradigmas de Programación",
                     "Implementación de POO y funcional.",
-                    "https://ejemplo.com/video2.mp4",
-                    250,
+                    "https://youtu.be/CWzOBeiBiFA?si=W6DNjd-TsCgLae0R",
+                    668,
                     new Date()
             ));
-            lessons.add(new Lesson(
-                    "4",
-                    "Rendimiento y Ecosistema",
-                    "Benchmarking y herramientas clave.",
-                    "https://ejemplo.com/video2.mp4",
-                    220,
-                    new Date()
-            ));
-            lessons.add(new Lesson(
-                    "5",
-                    "Toma de Decisiones",
-                    "¿Cuál elegir según el proyecto?",
-                    "https://ejemplo.com/video2.mp4",
-                    200,
-                    new Date()
-            ));
-
-
 
             adapter.notifyDataSetChanged();
             progressBar.setVisibility(View.GONE);

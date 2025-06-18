@@ -15,7 +15,6 @@ import com.alejandrobel.proyecto.R;
 import com.alejandrobel.proyecto.flashcards.models.Flashcard;
 
 import java.util.List;
-
 public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.ViewHolder> {
 
     private final List<Flashcard> flashcards;
@@ -49,18 +48,45 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.View
         holder.tvFeedback.setText(flashcard.getFeedback() != null ? flashcard.getFeedback() : "Respuesta incorrecta.");
         holder.tvFeedback.setVisibility(View.GONE);
 
+        holder.rbGroup.clearCheck();
+        holder.rbTrue.setEnabled(true);
+        holder.rbFalse.setEnabled(true);
         holder.rbTrue.setChecked(false);
         holder.rbFalse.setChecked(false);
 
         holder.rbGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            int realPosition = holder.getBindingAdapterPosition();
+            if (realPosition == RecyclerView.NO_POSITION) return;
+
+            if (!holder.rbTrue.isEnabled() && !holder.rbFalse.isEnabled()) {
+                // Ya respondido
+                return;
+            }
+
             boolean userAnswer = checkedId == R.id.rb_true;
-            listener.onAnswerSelected(holder.getAdapterPosition(), userAnswer, holder.tvQuestion, holder.tvFeedback);
+
+            if (userAnswer != flashcard.getIsTrue()) {
+                holder.tvFeedback.setVisibility(View.VISIBLE);
+            }
+
+            // Notificar al listener externo
+            listener.onAnswerSelected(realPosition, userAnswer, holder.tvQuestion, holder.tvFeedback);
+
+            // Desactivar opciones
+            holder.rbTrue.setEnabled(false);
+            holder.rbFalse.setEnabled(false);
         });
     }
 
     @Override
     public int getItemCount() {
         return flashcards.size();
+    }
+
+    public void actualizarLista(List<Flashcard> nuevaLista) {
+        flashcards.clear();
+        flashcards.addAll(nuevaLista);
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

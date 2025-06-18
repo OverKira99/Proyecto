@@ -1,5 +1,6 @@
 package com.alejandrobel.proyecto.lessons.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alejandrobel.proyecto.R;
 import com.alejandrobel.proyecto.lessons.models.Lesson;
+import com.alejandrobel.proyecto.lessons.activities.YouTubePlayerActivity;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
 
@@ -51,52 +56,79 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     }
 
     class LessonViewHolder extends RecyclerView.ViewHolder {
-        private final VideoView videoPreview;
-        private final ImageView ivPlay;
+
+        private final ImageView ivPlay, ivVideo_thumbnail;
         private final TextView tvTitle, tvDescription, tvDuration;
         private MediaController mediaController;
+        private Lesson currentLesson;
 
         public LessonViewHolder(@NonNull View itemView) {
             super(itemView);
-            videoPreview = itemView.findViewById(R.id.video_preview);
+            ivVideo_thumbnail = itemView.findViewById(R.id.video_thumbnail);
             ivPlay = itemView.findViewById(R.id.iv_play);
             tvTitle = itemView.findViewById(R.id.tv_lesson_title);
             tvDescription = itemView.findViewById(R.id.tv_lesson_description);
             tvDuration = itemView.findViewById(R.id.tv_duration);
 
-            // Configurar MediaController
+            // Solo usamos VideoView para mostrar el primer frame como miniatura (opcional)
             mediaController = new MediaController(itemView.getContext());
-            mediaController.setAnchorView(videoPreview);
-            videoPreview.setMediaController(mediaController);
+            mediaController.setAnchorView(ivVideo_thumbnail);
 
-            // Manejar clics en el ícono de play
-            ivPlay.setOnClickListener(v -> {
-                if (!videoPreview.isPlaying()) {
-                    videoPreview.start();
-                    ivPlay.setVisibility(View.GONE);
+
+            // Abrir reproductor de YouTube al hacer clic
+            itemView.setOnClickListener(v -> {
+                if (currentLesson != null) {
+                    String videoId = extractYouTubeVideoId(currentLesson.getVideoUrl());
+
+                    Intent intent = new Intent(itemView.getContext(), YouTubePlayerActivity.class);
+                    intent.putExtra(YouTubePlayerActivity.EXTRA_VIDEO_ID, videoId);
+                    itemView.getContext().startActivity(intent);
                 }
             });
 
-            // Restaurar ícono de play cuando el video termina
-            videoPreview.setOnCompletionListener(mp -> ivPlay.setVisibility(View.VISIBLE));
+
+
         }
 
         public void bind(Lesson lesson) {
+            currentLesson = lesson;
+
             tvTitle.setText(lesson.getTitle());
             tvDescription.setText(lesson.getDescription());
             tvDuration.setText(formatDuration(lesson.getDuration()));
 
-            // Configurar video (solo precarga, no autoplay)
-            videoPreview.setVideoPath(lesson.getVideoUrl());
-            videoPreview.seekTo(1); // Mostrar primer frame como preview
 
-            itemView.setOnClickListener(v -> listener.onLessonClick(lesson));
+            String videoId = extractYouTubeVideoId(lesson.getVideoUrl());
+            String thumbnailUrl = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
+
+
+            Glide.with(itemView.getContext())
+                    .load(thumbnailUrl)
+                    .into((ImageView) itemView.findViewById(R.id.video_thumbnail));
+
+            ivPlay.setVisibility(View.VISIBLE);
         }
 
         private String formatDuration(int seconds) {
             int minutes = seconds / 60;
             int remainingSeconds = seconds % 60;
             return String.format(Locale.getDefault(), "%d:%02d", minutes, remainingSeconds);
+        }
+
+        private String extractYouTubeVideoId(String url) {
+            if (url == null || url.trim().isEmpty()) return "";
+
+            String videoId = "";
+            String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\\?video_id=|\\?v=|\\&v=|youtu.be\\/|watch\\?v=|\\/v\\/|watch\\?v=|\\/embed\\/)[^#\\&\\?\\n]*";
+
+            Pattern compiledPattern = Pattern.compile(pattern);
+            Matcher matcher = compiledPattern.matcher(url);
+
+            if(matcher.find()){
+                videoId = matcher.group();
+            }
+
+            return videoId;
         }
     }
 }

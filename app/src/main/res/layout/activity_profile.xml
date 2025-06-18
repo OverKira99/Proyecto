@@ -3,101 +3,126 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@drawable/bg_gradient"
-    >
+    android:fillViewport="true">
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/top_app_bar_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        android:layout_marginBottom="16dp"
-        app:title="Tu Cuenta"
-        app:titleCentered="true"
-        app:titleTextColor="@color/black" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_app_bar_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Tu Cuenta"
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
 
-        <!-- Foto de perfil -->
         <ImageView
             android:id="@+id/iv_profile"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/profile"
-            android:contentDescription="Foto de perfil"
             android:background="@drawable/circle_bg"
-            android:elevation="4dp"/>
+            android:contentDescription="Foto de perfil"
+            android:elevation="4dp"
+            android:src="@drawable/profile" />
 
-        <!-- Botón para cambiar foto -->
+
         <Button
             android:id="@+id/btn_change_photo"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cambiar foto"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:text="Cambiar foto" />
 
-        <!-- Datos del usuario -->
-        <com.google.android.material.textfield.TextInputLayout
+
+        <!-- Título Progreso -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/card_background"
             android:layout_margin="16dp"
-            android:layout_marginTop="24dp"
-            >
+            android:elevation="4dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_name"
+            <TextView
+                android:id="@+id/tv_progreso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
-                android:inputType="textPersonName"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="16dp"
+                android:text="Progreso"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-           >
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/light_gray"
+                android:progressTint="@color/blue" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
+            <TextView
+                android:id="@+id/tv_resumen_dificultad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:enabled="false"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="16dp"
+                android:text="Resumen por dificultad"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <!-- Botón Guardar -->
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_margin="16dp"
-            android:text="Guardar Cambios"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/blue"
-           />
+            <TextView
+                android:id="@+id/tv_name_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Nombre"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-        <!-- Botón Cerrar Sesión -->
+            <TextView
+                android:id="@+id/tv_email_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Email"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Barra de progreso -->
+
+        <!-- Título Resumen -->
+
+        <!-- Campo Nombre -->
+
+        <!-- Campo Email -->
+
+
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_margin="16dp"
             android:layout_height="48dp"
+            android:layout_margin="16dp"
             android:layout_marginTop="16dp"
-            android:text="Cerrar Sesión"
             android:backgroundTint="@color/red_500"
-            />
+            android:text="Cerrar Sesión" />
+
     </LinearLayout>
 </ScrollView>

@@ -7,14 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:allowBackup="true"
         android:name=".MyApp"
+        android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:theme="@style/Theme.Proyecto"
         tools:targetApi="31">
-
+        <activity
+            android:name=".lessons.activities.YouTubePlayerActivity"
+            android:exported="false" />
         <!-- Actividades del perfil -->
         <activity
             android:name=".profile.activities.EditProfileActivity"
@@ -24,7 +26,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".profile.activities.ProfileActivity" />
         </activity>
-
         <activity
             android:name=".profile.activities.ProfileActivity"
             android:exported="false"
@@ -32,11 +33,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
-        </activity>
-
-        <!-- Actividades de lecciones -->
-
-
+        </activity> <!-- Actividades de lecciones -->
         <activity
             android:name=".lessons.activities.LessonsActivity"
             android:exported="false"
@@ -44,11 +41,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
-        </activity>
-
-        <!-- Actividades de flashcards -->
-
-
+        </activity> <!-- Actividades de flashcards -->
         <activity
             android:name=".flashcards.activities.FlashcardsActivity"
             android:exported="false"
@@ -56,31 +49,25 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
-        </activity>
-
-        <!-- Actividades de autenticación -->
+        </activity> <!-- Actividades de autenticación -->
         <activity
             android:name=".auth.activities.LoadScreenActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".auth.activities.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".auth.activities.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- Actividad principal -->
+            android:windowSoftInputMode="adjustResize" /> <!-- Actividad principal -->
         <activity
             android:name=".main.MainActivity"
             android:exported="false" />

@@ -3,6 +3,9 @@ package com.alejandrobel.proyecto.flashcards.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,16 +20,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-
+import java.util.List;
 public class FlashcardsActivity extends AppCompatActivity implements FlashcardAdapter.OnAnswerSelectedListener {
 
     private RecyclerView rvFlashcards;
     private Toolbar toolbar;
-    private ArrayList<Flashcard> flashcardsList = new ArrayList<>();
-    private FlashcardAdapter adapter;
-    private boolean isShowingFront = true;
+    private Spinner spinnerDificultad;
 
+    private ArrayList<Flashcard> flashcardsList = new ArrayList<>();  // Mostradas
+    private ArrayList<Flashcard> listaCompleta = new ArrayList<>();   // Todas
+
+    private FlashcardAdapter adapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private boolean isShowingFront = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +41,35 @@ public class FlashcardsActivity extends AppCompatActivity implements FlashcardAd
 
         rvFlashcards = findViewById(R.id.rv_flashcards);
         toolbar = findViewById(R.id.toolbar_flashcards);
+        spinnerDificultad = findViewById(R.id.spinner_dificultad);
 
-        // Toolbar con retroceso
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-        // RecyclerView
         adapter = new FlashcardAdapter(flashcardsList, this);
         rvFlashcards.setLayoutManager(new LinearLayoutManager(this));
         rvFlashcards.setAdapter(adapter);
 
-        // Cargar datos de Firestore
+        // Configura Spinner
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                this, R.array.niveles_dificultad, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDificultad.setAdapter(spinnerAdapter);
+
+        spinnerDificultad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String filtro = parent.getItemAtPosition(position).toString();
+                filtrarPorDificultad(filtro);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         cargarFlashcardsDesdeFirestore();
     }
 
@@ -57,17 +78,36 @@ public class FlashcardsActivity extends AppCompatActivity implements FlashcardAd
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     flashcardsList.clear();
+                    listaCompleta.clear();
+
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         Flashcard card = doc.toObject(Flashcard.class);
                         card.setId(doc.getId());
                         flashcardsList.add(card);
+                        listaCompleta.add(card); // ← importante
                     }
+
                     adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error al cargar las tarjetas.", Toast.LENGTH_SHORT).show();
                     Log.e("Firestore", "Fallo al obtener flashcards", e);
                 });
+    }
+
+    private void filtrarPorDificultad(String dificultad) {
+        if (dificultad.equals("Todos")) {
+            flashcardsList.clear();
+            flashcardsList.addAll(listaCompleta);
+        } else {
+            flashcardsList.clear();
+            for (Flashcard f : listaCompleta) {
+                if (f.getDificultad().equalsIgnoreCase(dificultad)) {
+                    flashcardsList.add(f);
+                }
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -83,7 +123,6 @@ public class FlashcardsActivity extends AppCompatActivity implements FlashcardAd
             flipCard(cardFront, cardBack, position);
         }
 
-        // Guardar el progreso en Firestore
         db.collection("flashcards")
                 .document(card.getId())
                 .set(card)
